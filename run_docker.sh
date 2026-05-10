@@ -74,7 +74,6 @@ else
         --privileged \
         --detach \
         --tty \
-        --gpus all \
         --shm-size=8g \
         --runtime=nvidia \
         --name $container_name \
