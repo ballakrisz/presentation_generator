@@ -73,8 +73,8 @@ for page_path in pages:
                 image,
                 (x1, y1),
                 (x2, y2),
-                (0, 255, 0),
-                2
+                (255, 0, 0),
+                4
             )
 
             # draw label
@@ -83,9 +83,9 @@ for page_path in pages:
                 label,
                 (x1, max(20, y1 - 10)),
                 cv2.FONT_HERSHEY_SIMPLEX,
-                0.7,
-                (0, 255, 0),
-                2
+                1.0,
+                (255, 0, 0),
+                3
             )
 
     # save annotated page
