@@ -1,0 +1,4 @@
+image_name="ppt_generator"
+image_tag="latest"
+container_name="ppt_generator"
+src_folder="./src"
