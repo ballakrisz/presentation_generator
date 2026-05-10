@@ -91,23 +91,9 @@ This generates:
 ```bash
 cd src/
 ./ppt_generator.sh \
-    --input input/paper.pdf \
-    --html-output output/custom.html \
-    --pdf-output output/final.pdf
-```
-
-
-
-### Full Example
-
-```bash
-cd src/
-./run.sh \
-    --input input/paper.pdf \
-    --html-output output/presentation.html \
-    --pdf-output output/final.pdf \
-    --temp-image-folder temp_images \
-    --temp-table-folder temp_tables
+    --input input/transformer.pdf \
+    --html-output output/transformer_presentation.html \
+    --pdf-output output/transformer_presentation.pdf
 ```
 
 
