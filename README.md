@@ -105,8 +105,6 @@ cd src/
 | `--input` | Input PDF document (required) |
 | `--html-output` | Output HTML presentation |
 | `--pdf-output` | Output PDF presentation |
-| `--temp-image-folder` | Temporary extracted figure directory |
-| `--temp-table-folder` | Temporary extracted table directory |
 
 ---
 
