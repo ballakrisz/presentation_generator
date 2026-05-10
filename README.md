@@ -123,13 +123,24 @@ The pipeline generates:
 - an HTML presentation,
 - a PDF presentation,
 - temporary extracted figures/tables.
+- metadata for the extracted figures and tables.
 
 Example:
 
 ```text
 output/
-├── presentation.html
-└── presentation.pdf
+├── transformer_presentation.html
+└── transformer_presentation.pdf
+
+figures/
+└── transformer/
+    └── figure_1.png
+    └── metadata.json
+
+tables/
+└── transformer/
+    └── table_1.png
+    └── metadata.json
 ```
 
-**Some example input-output pairs can be found in the `input/` and `output/` folders**
+**Some example input-output pairs can be found in the `input/` and `output/` folders, but feel free to try it yourself! :)**
