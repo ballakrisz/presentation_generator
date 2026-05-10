@@ -8,8 +8,8 @@ import os
 # ----------------------------------------
 
 MODEL_PATH = "doclayout_yolo_docstructbench_imgsz1024.pt"
-PAGE_PATTERN = "page-*.png"
-OUTPUT_DIR = "figures"
+PAGE_PATTERN = "page-14.png"
+OUTPUT_DIR = "annotated_pages"
 
 CONFIDENCE = 0.2
 IMAGE_SIZE = 1024
@@ -25,7 +25,6 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 # ----------------------------------------
 
 print("Loading model...")
-
 model = YOLOv10(MODEL_PATH)
 
 # ----------------------------------------
@@ -33,18 +32,15 @@ model = YOLOv10(MODEL_PATH)
 # ----------------------------------------
 
 pages = sorted(glob.glob(PAGE_PATTERN))
-
 print(f"Found {len(pages)} pages")
 
 # ----------------------------------------
 # PROCESS PAGES
 # ----------------------------------------
 
-figure_counter = 1
-
 for page_path in pages:
 
-    print(f"\nProcessing {page_path}")
+    print(f"Processing {page_path}")
 
     # run detection
     results = model.predict(
@@ -53,14 +49,14 @@ for page_path in pages:
         conf=CONFIDENCE
     )
 
-    # load original image
-    orig = cv2.imread(page_path)
+    # original image
+    image = cv2.imread(page_path)
 
-    if orig is None:
+    if image is None:
         print(f"Could not read {page_path}")
         continue
 
-    # iterate detections
+    # draw detections
     for r in results:
 
         boxes = r.boxes.xyxy.cpu().numpy()
@@ -70,38 +66,36 @@ for page_path in pages:
 
             label = r.names[int(cls_id)]
 
-            # only keep figures
-            if label != "figure":
-                continue
-
             x1, y1, x2, y2 = map(int, box)
 
-            # safety clamp
-            x1 = max(0, x1)
-            y1 = max(0, y1)
-            x2 = min(orig.shape[1], x2)
-            y2 = min(orig.shape[0], y2)
-
-            # crop figure
-            crop = orig[y1:y2, x1:x2]
-
-            # skip empty crops
-            if crop.size == 0:
-                print("Skipped empty crop")
-                continue
-
-            # output filename
-            output_path = os.path.join(
-                OUTPUT_DIR,
-                f"figure_{figure_counter}.png"
+            # draw rectangle
+            cv2.rectangle(
+                image,
+                (x1, y1),
+                (x2, y2),
+                (0, 255, 0),
+                2
             )
 
-            # save
-            cv2.imwrite(output_path, crop)
+            # draw label
+            cv2.putText(
+                image,
+                label,
+                (x1, max(20, y1 - 10)),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.7,
+                (0, 255, 0),
+                2
+            )
 
-            print(f"Saved {output_path}")
+    # save annotated page
+    output_path = os.path.join(
+        OUTPUT_DIR,
+        os.path.basename(page_path)
+    )
 
-            figure_counter += 1
+    cv2.imwrite(output_path, image)
+
+    print(f"Saved {output_path}")
 
 print("\nDone.")
-print(f"Saved {figure_counter - 1} figures.")

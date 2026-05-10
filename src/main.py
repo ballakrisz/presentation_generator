@@ -105,23 +105,12 @@ def main():
 
     input_stem = input_pdf.stem
 
-    temp_image_folder = (
-        resolve_relative_path(
-            f"{args.temp_image_folder}/{input_stem}"
-        )
-    )
-
     output_html.parent.mkdir(
         parents=True,
         exist_ok=True
     )
 
     output_pdf.parent.mkdir(
-        parents=True,
-        exist_ok=True
-    )
-
-    temp_image_folder.mkdir(
         parents=True,
         exist_ok=True
     )
