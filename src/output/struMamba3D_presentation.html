@@ -1,0 +1,1183 @@
+<html>
+<head>
+    <style>
+
+    @page {
+        size: 1280px 720px;
+        margin: 0;
+    }
+
+    html, body {
+        margin: 0;
+        padding: 0;
+        background: #111827;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .slide {
+        width: 1280px;
+        height: 720px;
+
+        box-sizing: border-box;
+
+        padding: 42px;
+
+        page-break-after: always;
+        break-after: page;
+
+        background: linear-gradient(
+            135deg,
+            #111827,
+            #1f2937
+        );
+
+        color: white;
+
+        overflow: hidden;
+
+        display: flex;
+        flex-direction: column;
+
+        position: relative;
+    }
+
+    .slide-title {
+        font-size: 38px;
+        font-weight: 700;
+
+        margin-bottom: 24px;
+
+        color: white;
+
+        flex-shrink: 0;
+    }
+
+    .slide-content {
+        flex: 1;
+
+        display: flex;
+
+        gap: 36px;
+
+        overflow: hidden;
+
+        min-height: 0;
+
+        align-items: stretch;
+    }
+
+    .slide-content.row-layout {
+        flex-direction: row;
+    }
+
+    .slide-content.column-layout {
+        flex-direction: column;
+    }
+
+    .slide-content.text-layout {
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: center;
+
+        align-items: stretch;
+
+        height: 100%;
+    }
+
+    .slide-content.text-layout .content-column {
+        flex: 1;
+
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: center;
+    }
+
+    .slide-content.text-layout ul {
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: center;
+
+        gap: 22px;
+
+        width: 100%;
+    }
+
+    .slide-content.text-layout li {
+        margin-bottom: 0;
+
+        font-size:28px;
+
+        line-height: 1.4;
+    }
+
+    .slide-content.column-layout .visual-container {
+        flex: 0 0 58%;
+    }
+
+    .slide-content.column-layout .content-column {
+        flex: 1;
+    }
+
+    .slide-content.column-layout li {
+        font-size: 28px;
+        line-height: 1.35;
+    }
+
+    .slide-content.row-layout .content-column {
+        max-width: 34%;
+
+        justify-content: center;
+    }
+
+    .slide-content.row-layout li {
+        font-size: 28px;
+        line-height: 1.4;
+    }
+
+    .slide-content.row-layout .visual-container {
+        flex: 1;
+    }
+
+    .slide-content.table-layout {
+        flex-direction: row;
+
+        align-items: center;
+    }
+
+    .slide-content.table-layout li {
+        font-size: 28px;
+        line-height: 1.4;
+    }
+
+    .slide-content.table-layout .content-column {
+        flex: 0 0 52%;
+
+        justify-content: center;
+    }
+
+    .slide-content.table-layout .visual-container {
+        flex: 1;
+
+        align-items: center;
+    }
+
+    .slide-content.tall-figure-layout {
+        flex-direction: row;
+
+        align-items: stretch;
+    }
+
+    .slide-content.tall-figure-layout .content-column {
+        flex: 0 0 38%;
+
+        justify-content: center;
+    }
+
+    .slide-content.tall-figure-layout .visual-container {
+        flex: 1;
+
+        align-items: center;
+        justify-content: center;
+
+        overflow: hidden;
+    }
+
+    .slide-content.tall-figure-layout .figure-wrapper {
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+        justify-content: center;
+    }
+
+    .slide-content.tall-figure-layout img {
+        height: 92%;
+
+        width: auto;
+
+        max-width: 100%;
+
+        object-fit: contain;
+    }
+
+    .slide-content.tall-figure-layout li {
+        font-size: 28px;
+
+        line-height: 1.45;
+
+        margin-bottom: 22px;
+    }
+
+    .content-column {
+        flex: 1;
+
+        min-width: 0;
+
+        display: flex;
+        flex-direction: column;
+
+        justify-content: flex-start;
+    }
+
+    .visual-container {
+        flex: 1;
+
+        min-width: 0;
+        min-height: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        overflow: visible;
+    }
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+
+        object-fit: contain;
+
+        border-radius: 14px;
+    }
+
+    ul {
+        margin: 0;
+        padding-left: 28px;
+    }
+
+    li {
+        line-height: 1.4;
+
+        margin-bottom: 14px;
+    }
+
+    .figure-wrapper {
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+        justify-content: center;
+
+        min-height: 0;
+    }
+
+    .figure-wrapper img {
+
+        width: 100%;
+        height: auto;
+
+        max-width: 100%;
+        max-height: 75%;
+
+        object-fit: contain;
+
+        border-radius: 14px;
+    }
+
+    .caption {
+        flex-shrink: 0;
+
+        margin-top: 12px;
+
+        font-size: 18px;
+
+        line-height: 1.35;
+
+        text-align: center;
+    }
+
+    .title-slide {
+        width: 1280px;
+        height: 720px;
+
+        box-sizing: border-box;
+
+        display: flex;
+        flex-direction: column;
+
+        justify-content: center;
+        align-items: center;
+
+        text-align: center;
+
+        padding: 80px 120px;
+
+        overflow: hidden;
+    }
+
+    .title-slide .slide-title {
+        display: block;
+
+        width: 100%;
+
+        font-family: Arial, sans-serif;
+
+        font-size: 50px;
+
+        line-height: 1.08;
+
+        font-weight: 900;
+
+        color: white;
+
+        text-align: center;
+
+        letter-spacing: -2px;
+
+        margin-bottom: 54px;
+    }
+
+    .title-slide .authors {
+        width: 100%;
+
+        font-size: 38px;
+
+        line-height: 1.35;
+
+        font-weight: 500;
+
+        color: #d1d5db;
+
+        text-align: center;
+
+        margin-bottom: 30px;
+    }
+
+    .title-slide .affiliations {
+        width: 100%;
+
+        font-size: 26px;
+
+        line-height: 1.45;
+
+        font-weight: 400;
+
+        color: #9ca3af;
+
+        text-align: center;
+
+        opacity: 0.95;
+    }
+
+    table {
+        width: 100%;
+
+        border-collapse: collapse;
+
+        overflow: hidden;
+
+        border-radius: 12px;
+
+        background: white;
+
+        color: black;
+
+        font-size: 18px;
+
+        margin-bottom: 12px;
+    }
+
+    th {
+        background: #2563eb;
+
+        color: white;
+
+        padding: 12px;
+
+        text-align: left;
+    }
+
+    td {
+        padding: 10px;
+
+        border: 1px solid #d1d5db;
+    }
+
+    .table-container {
+        width: 100%;
+
+        overflow: hidden;
+
+        margin-top: 18px;
+    }
+
+    .references {
+        font-size: 16px;
+
+        line-height: 1.4;
+
+        overflow: hidden;
+    }
+
+    .references li {
+        font-size: 16px;
+
+        margin-bottom: 8px;
+    }
+
+    </style>
+    
+    <title>StruMamba3D: Exploring Structural Mamba for Self-supervised Point Cloud Representation Learning</title>
+</head>
+<body>
+
+<!-- TITLE SLIDE -->
+<section class="slide title-slide">
+
+    <div class="slide-title">
+        StruMamba3D: Exploring Structural Mamba for Self-supervised Point Cloud Representation Learning
+    </div>
+
+    <div class="authors">
+        Chuxin Wang, Yixin Zha, Wenfei Yang*, Tianzhu Zhang
+    </div>
+
+    <div class="affiliations">
+        University of Science and Technology of China<br>
+        National Key Laboratory of Deep Space Exploration, Deep Space Exploration Laboratory
+    </div>
+
+</section>
+
+<!-- MOTIVATION & CHALLENGES -->
+<section class="slide">
+
+    <div class="slide-title">
+        Motivation & Key Challenges
+    </div>
+
+    <div class="slide-content text-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Mamba-based models show promise for point cloud learning</li>
+                <li>Two main challenges:</li>
+                <li>- Destroyed 3D point adjacency during SSM processing</li>
+                <li>- Poor long-sequence memory retention for longer inputs</li>
+                <li>Need to preserve spatial dependencies and adapt to varying sequence lengths</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- STRUMAMBA3D: OVERVIEW OF PARADIGMS -->
+<section class="slide">
+
+    <div class="slide-title">
+        StruMamba3D: Paradigm Comparison
+    </div>
+
+    <div class="slide-content column-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Transformer: Quadratic complexity, models dependencies via attention</li>
+                <li>Mamba: Linear complexity, but loses spatial adjacency and long-sequence memory</li>
+                <li>StruMamba3D: Maintains spatial dependencies and adapts to sequence length</li>
+                <li>Outperforms Transformer and Mamba-based methods</li>
+            </ul>
+
+        </div>
+
+        <div class="visual-container">
+
+            <div class="figure-wrapper">
+
+                <img src="/home/appuser/src/figures/struMamba3D/figure_1.png">
+
+                <div class="caption">
+                    Figure 1. (a): Transformer-based paradigm uses the attention b1ock with quadratic comp1exity to mode1 the dependencies between points. (b): Mamba-based paradigm uses the se1ective SSM with 1inear comp1exity. However, seria1ized points destroy the adjacency of 3D points, and the pre-trained se1ection mechanism fai1s to retain 1ong-sequence memory. (c): Our StruMamba3D paradigm uses the structura1 SSM to maintain the spatia1 dependencies among points and the sequence 1ength-adaptive strategy to retain 1ong-sequence memory. (d): Our StruMamba3D significant1y outperforms existing Transformer-based and Mamba-based methods.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- STRUMAMBA3D ARCHITECTURE OVERVIEW -->
+<section class="slide">
+
+    <div class="slide-title">
+        StruMamba3D Architecture Overview
+    </div>
+
+    <div class="slide-content column-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Spatial states initialized as proxies for local structure</li>
+                <li>Structural SSM blocks capture spatial dependencies</li>
+                <li>Lightweight convolution introduces local interactions</li>
+                <li>Bidirectional scanning for enhanced information flow</li>
+            </ul>
+
+        </div>
+
+        <div class="visual-container">
+
+            <div class="figure-wrapper">
+
+                <img src="/home/appuser/src/figures/struMamba3D/figure_2.png">
+
+                <div class="caption">
+                    Figure 2. Overview of StruMamba3D. (a): Architecture of StruMamba3D. (b): Detai1s of Structura1 SSM B1ock. We emp1oy structura1 SSM to capture dependencies between spatia1 states and input points. Additiona11y, we integrate a 1ightweight convo1ution modu1e to introduce 1oca1 interactions among spatia1 states or input points. (c): Detai1s of Structura1 SSM. (d): Detai1s of Lightweight Convo1ution.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- STRUCTURAL SSM BLOCK: KEY COMPONENTS -->
+<section class="slide">
+
+    <div class="slide-title">
+        Structural SSM Block: Key Components
+    </div>
+
+    <div class="slide-content text-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Spatial state initialization assigns positions to latent states</li>
+                <li>State-wise update models spatial dependencies between points and states</li>
+                <li>Bidirectional SSM for richer feature propagation</li>
+                <li>Lightweight convolution enhances inter-state interactions</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- SEQUENCE LENGTH-ADAPTIVE STRATEGY -->
+<section class="slide">
+
+    <div class="slide-title">
+        Sequence Length-Adaptive Strategy
+    </div>
+
+    <div class="slide-content text-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Adaptive state update mechanism adjusts update frequency by sequence length</li>
+                <li>Spatial state consistency loss enforces robustness to varying input lengths</li>
+                <li>Improves long-sequence memory retention in downstream tasks</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- PRE-TRAINING FRAMEWORK -->
+<section class="slide">
+
+    <div class="slide-title">
+        Pre-training Framework
+    </div>
+
+    <div class="slide-content column-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Masked Point Modeling (MPM) as main pre-training task</li>
+                <li>Spatial state consistency loss aligns student and teacher state features</li>
+                <li>Teacher updated via exponential moving average</li>
+            </ul>
+
+        </div>
+
+        <div class="visual-container">
+
+            <div class="figure-wrapper">
+
+                <img src="/home/appuser/src/figures/struMamba3D/figure_3.png">
+
+                <div class="caption">
+                    Figure 3. Overview of the pre-training framework. We pretrain the StruMamba3D (student mode1) using the MPM task and the spatia1 state consistency 1oss. The teacher mode1 has the same structure as the student mode1, but its parameters are updated using the exponentia1 moving average strategy.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- SHAPE CLASSIFICATION RESULTS -->
+<section class="slide">
+
+    <div class="slide-title">
+        Shape Classification Results
+    </div>
+
+    <div class="slide-content row-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>StruMamba3D achieves SOTA on ScanObjectNN and ModelNet40</li>
+                <li>Outperforms Transformer and Mamba-based methods</li>
+                <li>Significant gains in challenging splits and without voting</li>
+            </ul>
+
+        </div>
+
+        <div class="visual-container">
+
+            <div class="figure-wrapper">
+
+                <img src="/home/appuser/src/tables/struMamba3D/table_1.png">
+
+                <div class="caption">
+                    Tab1e 1. Shape C1assification on ScanObjectNN and Mode1Net40 Datasets. For ScanObjectNN, we report the c1assification accuracy(%) over the three subsets: OBJ-BG, OBJ-ONLY, and PB-T50-RS. And { indicates using simp1e rotationa1 augmentation [7] for fine-tuning.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- PART SEGMENTATION RESULTS -->
+<section class="slide">
+
+    <div class="slide-title">
+        Part Segmentation Results
+    </div>
+
+    <div class="slide-content row-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>StruMamba3D achieves highest mIoU among single-scale models</li>
+                <li>Outperforms Mamba3D and PointMamba on ShapeNetPart</li>
+                <li>Efficient structure modeling without serialization</li>
+            </ul>
+
+        </div>
+
+        <div class="visual-container">
+
+            <div class="figure-wrapper">
+
+                <img src="/home/appuser/src/tables/struMamba3D/table_2.png">
+
+                <div class="caption">
+                    Tab1e 2. Part Segmentation on ShapeNetPart. We report the mean 1oU for a11 c1asses (m1oU,) and a11 instances (m1oU;).
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- LARGE-SCALE 3D SCENE UNDERSTANDING -->
+<section class="slide">
+
+    <div class="slide-title">
+        Large-scale 3D Scene Understanding
+    </div>
+
+    <div class="slide-content row-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Evaluated on ScanNetV2 for 3D object detection</li>
+                <li>StruMamba3D achieves highest mAP25 and mAP50</li>
+                <li>Demonstrates scalability to large point clouds</li>
+            </ul>
+
+        </div>
+
+        <div class="visual-container">
+
+            <div class="figure-wrapper">
+
+                <img src="/home/appuser/src/tables/struMamba3D/table_9.png">
+
+                <div class="caption">
+                    Tab1e 9. Quantitative comparison on the ScanNetV2 dataset in terms of mAP25 and mAP50.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FLOPS AND INFERENCE SPEED -->
+<section class="slide">
+
+    <div class="slide-title">
+        Computational Efficiency
+    </div>
+
+    <div class="slide-content column-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>StruMamba3D has linear complexity via hardware-aware scan</li>
+                <li>Lower FLOPs than Transformer-based PointMAE for long sequences</li>
+                <li>Faster inference and higher FPS, especially with longer inputs</li>
+            </ul>
+
+        </div>
+
+        <div class="visual-container">
+
+            <div class="figure-wrapper">
+
+                <img src="/home/appuser/src/figures/struMamba3D/figure_4.png">
+
+                <div class="caption">
+                    Figure 4. FLOPs comparison with PointMAE.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- INFERENCE TIME AND FPS -->
+<section class="slide">
+
+    <div class="slide-title">
+        Inference Time and FPS Comparison
+    </div>
+
+    <div class="slide-content column-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>StruMamba3D outperforms PointGPT and Mamba-based baselines in speed</li>
+                <li>Maintains efficiency as input length increases</li>
+            </ul>
+
+        </div>
+
+        <div class="visual-container">
+
+            <div class="figure-wrapper">
+
+                <img src="/home/appuser/src/figures/struMamba3D/figure_5.png">
+
+                <div class="caption">
+                    Figure 5. 1nference time and FPS comparison.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ABLATION: STRUCTURAL SSM BLOCK -->
+<section class="slide">
+
+    <div class="slide-title">
+        Ablation: Structural SSM Block
+    </div>
+
+    <div class="slide-content row-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Structural SSM block yields large accuracy gains</li>
+                <li>Lightweight convolution and bidirectional scanning further improve results</li>
+                <li>Spatial state modeling is crucial for performance</li>
+            </ul>
+
+        </div>
+
+        <div class="visual-container">
+
+            <div class="figure-wrapper">
+
+                <img src="/home/appuser/src/tables/struMamba3D/table_5.png">
+
+                <div class="caption">
+                    Tab1e 5. Ab1ation on Structura1 SSM B1ock. The base1ine uses the standard Mamba b1ock to rep1ace the Structura1 SSM B1ock.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ABLATION: DESIGNED MODULES -->
+<section class="slide">
+
+    <div class="slide-title">
+        Ablation: Designed Modules
+    </div>
+
+    <div class="slide-content row-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Structural SSM block and sequence length-adaptive strategy both boost accuracy</li>
+                <li>Combining both achieves optimal results across tasks</li>
+            </ul>
+
+        </div>
+
+        <div class="visual-container">
+
+            <div class="figure-wrapper">
+
+                <img src="/home/appuser/src/tables/struMamba3D/table_4.png">
+
+                <div class="caption">
+                    Tab1e 4. Effect of the designed modu1es. ‘SLAS’ indicates the sequence 1ength-adaptive strategy used in pre-training phase.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ABLATION: STRUCTURAL SSM DETAILS -->
+<section class="slide">
+
+    <div class="slide-title">
+        Ablation: Structural SSM Details
+    </div>
+
+    <div class="slide-content row-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>State-wise update strategy is essential for structural modeling</li>
+                <li>Combining point features and spatial relationships yields best results</li>
+            </ul>
+
+        </div>
+
+        <div class="visual-container">
+
+            <div class="figure-wrapper">
+
+                <img src="/home/appuser/src/tables/struMamba3D/table_6.png">
+
+                <div class="caption">
+                    Tab1e 6. Ab1ation on Structura1 SSM. ‘SS’ represents the use of spatia1 states in the SSM. ‘(a)’ denotes the SSM parameters depending on the point feature, whi1e ‘MLP(AP)’ represents the SSM parameters depending on the spatia1 re1ationship.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ABLATION: SEQUENCE LENGTH-ADAPTIVE STRATEGY -->
+<section class="slide">
+
+    <div class="slide-title">
+        Ablation: Sequence Length-Adaptive Strategy
+    </div>
+
+    <div class="slide-content row-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Adaptive state update and consistency loss are complementary</li>
+                <li>Best performance when both are used together</li>
+                <li>Model is robust to varying input lengths</li>
+            </ul>
+
+        </div>
+
+        <div class="visual-container">
+
+            <div class="figure-wrapper">
+
+                <img src="/home/appuser/src/tables/struMamba3D/table_7.png">
+
+                <div class="caption">
+                    Tab1e 7. Ab1ation on sequence 1ength-adaptive strategy. ‘ASUM’ indicates the adaptive state update mechanism, and ‘\\’ indicates the weight of the spatia1 state consistency 1oss Lesc.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ABLATION: POINT CONVOLUTION -->
+<section class="slide">
+
+    <div class="slide-title">
+        Ablation: Point Convolution
+    </div>
+
+    <div class="slide-content row-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Number of neighbors in lightweight convolution impacts performance</li>
+                <li>Optimal: k=4 for spatial states, k=8 for input points</li>
+                <li>Spatial states more sensitive to neighbor count</li>
+            </ul>
+
+        </div>
+
+        <div class="visual-container">
+
+            <div class="figure-wrapper">
+
+                <img src="/home/appuser/src/tables/struMamba3D/table_12.png">
+
+                <div class="caption">
+                    Tab1e 12. Ab1ation on the point convo1ution. “k” denotes the number of k-nearest neighbors in the 1ightweight convo1ution,
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- DETAILED PART SEGMENTATION RESULTS -->
+<section class="slide">
+
+    <div class="slide-title">
+        Detailed Part Segmentation Results
+    </div>
+
+    <div class="slide-content column-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>StruMamba3D achieves best mean IoU in most categories</li>
+                <li>Spatial states enhance local structure modeling</li>
+                <li>Superior segmentation of complex shapes</li>
+            </ul>
+
+        </div>
+
+        <div class="visual-container">
+
+            <div class="figure-wrapper">
+
+                <img src="/home/appuser/src/tables/struMamba3D/table_8.png">
+
+                <div class="caption">
+                    Tab1e 8. Detai1ed Resu1ts of Part Segmentation on ShapeNetPart Dataset. We report the mean 1oU for each category. * indicates resu1ts reproduced using the officia1 code.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- VISUALIZATION: SPATIAL STATE CORRELATION -->
+<section class="slide">
+
+    <div class="slide-title">
+        Visualization: Spatial State Correlation
+    </div>
+
+    <div class="slide-content tall-figure-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Different spatial states focus on distinct regions</li>
+                <li>Structural SSM effectively captures local structure</li>
+            </ul>
+
+        </div>
+
+        <div class="visual-container">
+
+            <div class="figure-wrapper">
+
+                <img src="/home/appuser/src/figures/struMamba3D/figure_6.png">
+
+                <div class="caption">
+                    Figure 6. Visua1ization of corre1ation between the output point and spatia1 state features produced by the structura1 SSM. For each point c1oud, we se1ect five spatia1 states that are wide1y spaced for visua1ization.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- VISUALIZATION: MASKED POINT MODELING -->
+<section class="slide">
+
+    <div class="slide-title">
+        Visualization: Masked Point Modeling
+    </div>
+
+    <div class="slide-content tall-figure-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>StruMamba3D reconstructs masked regions accurately</li>
+                <li>Handles complex geometric patterns with high fidelity</li>
+            </ul>
+
+        </div>
+
+        <div class="visual-container">
+
+            <div class="figure-wrapper">
+
+                <img src="/home/appuser/src/figures/struMamba3D/figure_7.png">
+
+                <div class="caption">
+                    Figure 7. Visua1ization of reconstructed masked regions on ShapeNet. Fu11 points represent the raw point c1oud, whi1e visib1e points correspond to the input points with 60% masked. The reconstruction resu1ts consist of the predicted points combined with visib1e points.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- VISUALIZATION: PART SEGMENTATION -->
+<section class="slide">
+
+    <div class="slide-title">
+        Visualization: Part Segmentation
+    </div>
+
+    <div class="slide-content tall-figure-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Accurate segmentation of complex structures</li>
+                <li>Corrects some annotation errors in ShapeNetPart</li>
+                <li>High mIoU and robust to noisy labels</li>
+            </ul>
+
+        </div>
+
+        <div class="visual-container">
+
+            <div class="figure-wrapper">
+
+                <img src="/home/appuser/src/figures/struMamba3D/figure_8.png">
+
+                <div class="caption">
+                    Figure 8. Visua1ization of part segmentation of our Structura1 Mamba on ShapeNetPart. Different co1ors represent different parts. The red circ1es high1ight points with obvious annotation errors.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CONCLUSION -->
+<section class="slide">
+
+    <div class="slide-title">
+        Conclusion
+    </div>
+
+    <div class="slide-content text-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>StruMamba3D addresses adjacency distortion and long-sequence memory issues</li>
+                <li>Structural SSM block and sequence length-adaptive strategy are key innovations</li>
+                <li>Achieves SOTA results on multiple point cloud tasks</li>
+                <li>Ablation and visualization confirm effectiveness of each module</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+</html>

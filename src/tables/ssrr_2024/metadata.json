@@ -1,0 +1,23 @@
+[
+  {
+    "table_id": 1,
+    "image_path": "tables/ssrr_2024/table_1.png",
+    "caption": "Table 1 COMPONENT-W1SE PERFORMANCE REGARD1NG 1NFERENCE SPEED",
+    "width": 1172,
+    "height": 243
+  },
+  {
+    "table_id": 2,
+    "image_path": "tables/ssrr_2024/table_2.png",
+    "caption": "Table 2 STAT1C AND DYNAM1C BACKGROUND REMOVAL SPEED COMPAR1SON",
+    "width": 722,
+    "height": 245
+  },
+  {
+    "table_id": 3,
+    "image_path": "tables/ssrr_2024/table_3.png",
+    "caption": "Table 3 PERFORMANCE EVALUAT1ON OF THE SEMANT1C SEGMENTAT1ON NETWORK",
+    "width": 648,
+    "height": 160
+  }
+]

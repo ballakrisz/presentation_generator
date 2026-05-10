@@ -1,12 +1,10 @@
 import argparse
+import subprocess
+import json
 from pathlib import Path
 
 from document_reader import (
     extract_document_text
-)
-
-from image_indexer import (
-    extract_images_with_context
 )
 
 from html_generator import (
@@ -105,9 +103,11 @@ def main():
         args.pdf_output
     )
 
+    input_stem = input_pdf.stem
+
     temp_image_folder = (
         resolve_relative_path(
-            args.temp_image_folder
+            f"{args.temp_image_folder}/{input_stem}"
         )
     )
 
@@ -132,17 +132,79 @@ def main():
         str(input_pdf)
     )
 
-    print("Extracting figures...")
+    print("Extracting figures and tables...")
 
-    indexed_images = (
-        extract_images_with_context(
-            str(input_pdf),
-            str(temp_image_folder)
+    subprocess.run(
+        [
+            str(BASE_DIR / "extract_figures.sh"),
+            "--input",
+            str(input_pdf)
+        ],
+        check=True
+    )
+
+    # ----------------------------------------
+    # FIGURES
+    # ----------------------------------------
+
+    figure_dir = (
+        BASE_DIR /
+        "figures" /
+        input_stem
+    )
+
+    figure_metadata_path = (
+        figure_dir /
+        "metadata.json"
+    )
+
+    if not figure_metadata_path.exists():
+        raise FileNotFoundError(
+            f"Figure metadata missing: "
+            f"{figure_metadata_path}"
         )
+
+    with open(
+        figure_metadata_path,
+        "r",
+        encoding="utf-8"
+    ) as f:
+        indexed_images = json.load(f)
+
+    # ----------------------------------------
+    # TABLES
+    # ----------------------------------------
+
+    table_dir = (
+        BASE_DIR /
+        "tables" /
+        input_stem
+    )
+
+    table_metadata_path = (
+        table_dir /
+        "metadata.json"
+    )
+
+    if not table_metadata_path.exists():
+        raise FileNotFoundError(
+            f"Table metadata missing: "
+            f"{table_metadata_path}"
+        )
+
+    with open(
+        table_metadata_path,
+        "r",
+        encoding="utf-8"
+    ) as f:
+        indexed_tables = json.load(f)
+
+    print(
+        f"Loaded {len(indexed_images)} figures"
     )
 
     print(
-        f"Extracted {len(indexed_images)} figures"
+        f"Loaded {len(indexed_tables)} tables"
     )
 
     print(
@@ -152,6 +214,7 @@ def main():
     generate_html_presentation(
         document_text,
         indexed_images,
+        indexed_tables,
         str(output_html)
     )
 

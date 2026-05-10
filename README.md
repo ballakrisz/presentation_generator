@@ -147,3 +147,5 @@ output/
 ├── presentation.html
 └── presentation.pdf
 ```
+
+**Some example input-output pairs can be found in the `input/` and `output/` folders**

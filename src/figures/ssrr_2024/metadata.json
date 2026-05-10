@@ -1,0 +1,30 @@
+[
+  {
+    "figure_id": 1,
+    "image_path": "figures/ssrr_2024/figure_1.png",
+    "caption": "Fig. 1. Out1ine of the proposed so1ution: The raw point c1oud stream, that is provided by a rosette scanning LiDAR serves as input for an attention-based neura1 network that removes both the static and dynamic background e1ements from it. The remaining foreground points then undergo a c1ustering and a unique preprocessing step in order to be c1assified by a s1ight1y modified PointNet network.",
+    "width": 2014,
+    "height": 445
+  },
+  {
+    "figure_id": 2,
+    "image_path": "figures/ssrr_2024/figure_2.png",
+    "caption": "Fig. 2. Overview of the semantic segmentation network: the point c1oud is transformed into a transformation invariant space, where each of the points inf1uence is ca1cu1ated with re1evance to a11 the other points through the Mu1ti-Head attention [17] mechanism and fina11y, a11 of them are assigned with a c1ass determined by an MLP.",
+    "width": 2201,
+    "height": 1436
+  },
+  {
+    "figure_id": 4,
+    "image_path": "figures/ssrr_2024/figure_4.png",
+    "caption": "Fig. 4. The number of correct and incorrect c1assifications on the test dataset p1otted against the object’s distance from the sensor. As i11ustrated above, the distance on1y s1ight1y affects the ratio of correct to incorrect c1assifications. This behaviour is the resu1t of our co11ected samp1es being sparse to begin with, which great1y aided our c1assifier in genera1izing for 1onger distances during training.",
+    "width": 1144,
+    "height": 616
+  },
+  {
+    "figure_id": 3,
+    "image_path": "figures/ssrr_2024/figure_3.png",
+    "caption": "Fig. 3. Confusion matrix on the test dataset for the c1assification network.",
+    "width": 1030,
+    "height": 677
+  }
+]

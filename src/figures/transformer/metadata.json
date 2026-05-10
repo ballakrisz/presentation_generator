@@ -1,0 +1,37 @@
+[
+  {
+    "figure_id": 1,
+    "image_path": "figures/transformer/figure_1.png",
+    "caption": "Figure 1: The Transformer mode1 architecture.",
+    "width": 1022,
+    "height": 1376
+  },
+  {
+    "figure_id": 2,
+    "image_path": "figures/transformer/figure_2.png",
+    "caption": "Figure 2: (1eft) Sca1ed Dot-Product Attention. (right) Mu1ti-Head Attention consists of severa1 attention 1ayers running in para11e1.",
+    "width": 1390,
+    "height": 730
+  },
+  {
+    "figure_id": 3,
+    "image_path": "figures/transformer/figure_3.png",
+    "caption": "Figure 3: An examp1e of the attention mechanism fo11owing 1ong-distance dependencies in the encoder se1f-attention in 1ayer 5 of 6. Many of the attention heads attend to a distant dependency of the verb ‘making’, comp1eting the phrase ‘making...more difficu1t’. Attentions here shown on1y for the word ‘making’. Different co1ors represent different heads. Best viewed in co1or.",
+    "width": 1739,
+    "height": 874
+  },
+  {
+    "figure_id": 4,
+    "image_path": "figures/transformer/figure_4.png",
+    "caption": "Figure 4: Two attention heads, a1so in 1ayer 5 of 6, apparent1y invo1ved in anaphora reso1ution. Top: Fu11 attentions for head 5. Bottom: 1so1ated attentions from just the word ‘its’ for attention heads 5 and 6. Note that the attentions are very sharp for this word.",
+    "width": 1730,
+    "height": 1854
+  },
+  {
+    "figure_id": 5,
+    "image_path": "figures/transformer/figure_5.png",
+    "caption": "Figure 5: Many of the attention heads exhibit behaviour that seems re1ated to the structure of the sentence. We give two such examp1es above, from two different heads from the encoder se1f-attention at 1ayer 5 of 6. The heads c1ear1y 1earned to perform different tasks.",
+    "width": 1711,
+    "height": 1722
+  }
+]

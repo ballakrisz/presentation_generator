@@ -1,0 +1,30 @@
+[
+  {
+    "table_id": 1,
+    "image_path": "tables/transformer/table_1.png",
+    "caption": "Tab1e 1: Maximum path 1engths, per-1ayer comp1exity and minimum number of sequentia1 operations for different 1ayer types. n is the sequence 1ength, d is the representation dimension, & is the kerne1 size of convo1utions and r the size of the neighborhood in restricted se1f-attention.",
+    "width": 1694,
+    "height": 341
+  },
+  {
+    "table_id": 2,
+    "image_path": "tables/transformer/table_2.png",
+    "caption": "Tab1e 2: The Transformer achieves better BLEU scores than previous state-of-the-art mode1s on the Eng1ish-to-German and Eng1ish-to-French newstest2014 tests at a fraction of the training cost.",
+    "width": 1598,
+    "height": 650
+  },
+  {
+    "table_id": 3,
+    "image_path": "tables/transformer/table_3.png",
+    "caption": "Tab1e 3: Variations on the Transformer architecture. Un1isted va1ues are identica1 to those of the base mode1, A11 metrics are on the Eng1ish-to-German trans1ation deve1opment set, newstest2013. Listed perp1exities are per-wordpiece, according to our byte-pair encoding, and shou1d not be compared to per-word perp1exities.",
+    "width": 1803,
+    "height": 1096
+  },
+  {
+    "table_id": 4,
+    "image_path": "tables/transformer/table_4.png",
+    "caption": "Tab1e 4: The Transformer genera1izes we11 to Eng1ish constituency parsing (Resu1ts are on Section 23 of WSJ)",
+    "width": 1474,
+    "height": 627
+  }
+]

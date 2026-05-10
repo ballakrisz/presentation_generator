@@ -3,3 +3,15 @@ python-pptx
 python-dotenv
 PyMuPDF
 playwright
+
+torch
+torchvision
+
+ultralytics
+doclayout-yolo
+huggingface_hub
+
+opencv-python
+pytesseract
+numpy
+Pillow

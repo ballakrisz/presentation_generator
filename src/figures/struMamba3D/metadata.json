@@ -1,0 +1,58 @@
+[
+  {
+    "figure_id": 1,
+    "image_path": "figures/struMamba3D/figure_1.png",
+    "caption": "Figure 1. (a): Transformer-based paradigm uses the attention b1ock with quadratic comp1exity to mode1 the dependencies between points. (b): Mamba-based paradigm uses the se1ective SSM with 1inear comp1exity. However, seria1ized points destroy the adjacency of 3D points, and the pre-trained se1ection mechanism fai1s to retain 1ong-sequence memory. (c): Our StruMamba3D paradigm uses the structura1 SSM to maintain the spatia1 dependencies among points and the sequence 1ength-adaptive strategy to retain 1ong-sequence memory. (d): Our StruMamba3D significant1y outperforms existing Transformer-based and Mamba-based methods.",
+    "width": 1982,
+    "height": 676
+  },
+  {
+    "figure_id": 2,
+    "image_path": "figures/struMamba3D/figure_2.png",
+    "caption": "Figure 2. Overview of StruMamba3D. (a): Architecture of StruMamba3D. (b): Detai1s of Structura1 SSM B1ock. We emp1oy structura1 SSM to capture dependencies between spatia1 states and input points. Additiona11y, we integrate a 1ightweight convo1ution modu1e to introduce 1oca1 interactions among spatia1 states or input points. (c): Detai1s of Structura1 SSM. (d): Detai1s of Lightweight Convo1ution.",
+    "width": 2022,
+    "height": 1007
+  },
+  {
+    "figure_id": 3,
+    "image_path": "figures/struMamba3D/figure_3.png",
+    "caption": "Figure 3. Overview of the pre-training framework. We pretrain the StruMamba3D (student mode1) using the MPM task and the spatia1 state consistency 1oss. The teacher mode1 has the same structure as the student mode1, but its parameters are updated using the exponentia1 moving average strategy.",
+    "width": 1085,
+    "height": 613
+  },
+  {
+    "figure_id": 4,
+    "image_path": "figures/struMamba3D/figure_4.png",
+    "caption": "Figure 4. FLOPs comparison with PointMAE.",
+    "width": 941,
+    "height": 558
+  },
+  {
+    "figure_id": 5,
+    "image_path": "figures/struMamba3D/figure_5.png",
+    "caption": "Figure 5. 1nference time and FPS comparison.",
+    "width": 1765,
+    "height": 490
+  },
+  {
+    "figure_id": 6,
+    "image_path": "figures/struMamba3D/figure_6.png",
+    "caption": "Figure 6. Visua1ization of corre1ation between the output point and spatia1 state features produced by the structura1 SSM. For each point c1oud, we se1ect five spatia1 states that are wide1y spaced for visua1ization.",
+    "width": 1901,
+    "height": 2173
+  },
+  {
+    "figure_id": 7,
+    "image_path": "figures/struMamba3D/figure_7.png",
+    "caption": "Figure 7. Visua1ization of reconstructed masked regions on ShapeNet. Fu11 points represent the raw point c1oud, whi1e visib1e points correspond to the input points with 60% masked. The reconstruction resu1ts consist of the predicted points combined with visib1e points.",
+    "width": 2144,
+    "height": 2457
+  },
+  {
+    "figure_id": 8,
+    "image_path": "figures/struMamba3D/figure_8.png",
+    "caption": "Figure 8. Visua1ization of part segmentation of our Structura1 Mamba on ShapeNetPart. Different co1ors represent different parts. The red circ1es high1ight points with obvious annotation errors.",
+    "width": 2121,
+    "height": 2406
+  }
+]

@@ -1,0 +1,879 @@
+<html>
+<head>
+    <style>
+
+    @page {
+        size: 1280px 720px;
+        margin: 0;
+    }
+
+    html, body {
+        margin: 0;
+        padding: 0;
+        background: #111827;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .slide {
+        width: 1280px;
+        height: 720px;
+
+        box-sizing: border-box;
+
+        padding: 42px;
+
+        page-break-after: always;
+        break-after: page;
+
+        background: linear-gradient(
+            135deg,
+            #111827,
+            #1f2937
+        );
+
+        color: white;
+
+        overflow: hidden;
+
+        display: flex;
+        flex-direction: column;
+
+        position: relative;
+    }
+
+    .slide-title {
+        font-size: 38px;
+        font-weight: 700;
+
+        margin-bottom: 24px;
+
+        color: white;
+
+        flex-shrink: 0;
+    }
+
+    .slide-content {
+        flex: 1;
+
+        display: flex;
+
+        gap: 36px;
+
+        overflow: hidden;
+
+        min-height: 0;
+
+        align-items: stretch;
+    }
+
+    .slide-content.row-layout {
+        flex-direction: row;
+    }
+
+    .slide-content.column-layout {
+        flex-direction: column;
+    }
+
+    .slide-content.text-layout {
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: center;
+
+        align-items: stretch;
+
+        height: 100%;
+    }
+
+    .slide-content.text-layout .content-column {
+        flex: 1;
+
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: center;
+    }
+
+    .slide-content.text-layout ul {
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: center;
+
+        gap: 22px;
+
+        width: 100%;
+    }
+
+    .slide-content.text-layout li {
+        margin-bottom: 0;
+
+        font-size:28px;
+
+        line-height: 1.4;
+    }
+
+    .slide-content.column-layout .visual-container {
+        flex: 0 0 58%;
+    }
+
+    .slide-content.column-layout .content-column {
+        flex: 1;
+    }
+
+    .slide-content.column-layout li {
+        font-size: 28px;
+        line-height: 1.35;
+    }
+
+    .slide-content.row-layout .content-column {
+        max-width: 34%;
+
+        justify-content: center;
+    }
+
+    .slide-content.row-layout li {
+        font-size: 28px;
+        line-height: 1.4;
+    }
+
+    .slide-content.row-layout .visual-container {
+        flex: 1;
+    }
+
+    .slide-content.table-layout {
+        flex-direction: row;
+
+        align-items: center;
+    }
+
+    .slide-content.table-layout li {
+        font-size: 28px;
+        line-height: 1.4;
+    }
+
+    .slide-content.table-layout .content-column {
+        flex: 0 0 52%;
+
+        justify-content: center;
+    }
+
+    .slide-content.table-layout .visual-container {
+        flex: 1;
+
+        align-items: center;
+    }
+
+    .slide-content.tall-figure-layout {
+        flex-direction: row;
+
+        align-items: stretch;
+    }
+
+    .slide-content.tall-figure-layout .content-column {
+        flex: 0 0 38%;
+
+        justify-content: center;
+    }
+
+    .slide-content.tall-figure-layout .visual-container {
+        flex: 1;
+
+        align-items: center;
+        justify-content: center;
+
+        overflow: hidden;
+    }
+
+    .slide-content.tall-figure-layout .figure-wrapper {
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+        justify-content: center;
+    }
+
+    .slide-content.tall-figure-layout img {
+        height: 92%;
+
+        width: auto;
+
+        max-width: 100%;
+
+        object-fit: contain;
+    }
+
+    .slide-content.tall-figure-layout li {
+        font-size: 28px;
+
+        line-height: 1.45;
+
+        margin-bottom: 22px;
+    }
+
+    .content-column {
+        flex: 1;
+
+        min-width: 0;
+
+        display: flex;
+        flex-direction: column;
+
+        justify-content: flex-start;
+    }
+
+    .visual-container {
+        flex: 1;
+
+        min-width: 0;
+        min-height: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        overflow: visible;
+    }
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+
+        object-fit: contain;
+
+        border-radius: 14px;
+    }
+
+    ul {
+        margin: 0;
+        padding-left: 28px;
+    }
+
+    li {
+        line-height: 1.4;
+
+        margin-bottom: 14px;
+    }
+
+    .figure-wrapper {
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+        justify-content: center;
+
+        min-height: 0;
+    }
+
+    .figure-wrapper img {
+
+        width: 100%;
+        height: auto;
+
+        max-width: 100%;
+        max-height: 75%;
+
+        object-fit: contain;
+
+        border-radius: 14px;
+    }
+
+    .caption {
+        flex-shrink: 0;
+
+        margin-top: 12px;
+
+        font-size: 18px;
+
+        line-height: 1.35;
+
+        text-align: center;
+    }
+
+    .title-slide {
+        width: 1280px;
+        height: 720px;
+
+        box-sizing: border-box;
+
+        display: flex;
+        flex-direction: column;
+
+        justify-content: center;
+        align-items: center;
+
+        text-align: center;
+
+        padding: 80px 120px;
+
+        overflow: hidden;
+    }
+
+    .title-slide .slide-title {
+        display: block;
+
+        width: 100%;
+
+        font-family: Arial, sans-serif;
+
+        font-size: 50px;
+
+        line-height: 1.08;
+
+        font-weight: 900;
+
+        color: white;
+
+        text-align: center;
+
+        letter-spacing: -2px;
+
+        margin-bottom: 54px;
+    }
+
+    .title-slide .authors {
+        width: 100%;
+
+        font-size: 38px;
+
+        line-height: 1.35;
+
+        font-weight: 500;
+
+        color: #d1d5db;
+
+        text-align: center;
+
+        margin-bottom: 30px;
+    }
+
+    .title-slide .affiliations {
+        width: 100%;
+
+        font-size: 26px;
+
+        line-height: 1.45;
+
+        font-weight: 400;
+
+        color: #9ca3af;
+
+        text-align: center;
+
+        opacity: 0.95;
+    }
+
+    table {
+        width: 100%;
+
+        border-collapse: collapse;
+
+        overflow: hidden;
+
+        border-radius: 12px;
+
+        background: white;
+
+        color: black;
+
+        font-size: 18px;
+
+        margin-bottom: 12px;
+    }
+
+    th {
+        background: #2563eb;
+
+        color: white;
+
+        padding: 12px;
+
+        text-align: left;
+    }
+
+    td {
+        padding: 10px;
+
+        border: 1px solid #d1d5db;
+    }
+
+    .table-container {
+        width: 100%;
+
+        overflow: hidden;
+
+        margin-top: 18px;
+    }
+
+    .references {
+        font-size: 16px;
+
+        line-height: 1.4;
+
+        overflow: hidden;
+    }
+
+    .references li {
+        font-size: 16px;
+
+        margin-bottom: 8px;
+    }
+
+    </style>
+    
+    <title>Attention Is All You Need - Presentation</title>
+</head>
+<body>
+
+<section class="slide title-slide">
+
+    <div class="slide-title">
+        Attention Is All You Need
+    </div>
+
+    <div class="authors">
+        Ashish Vaswani*, Noam Shazeer*, Niki Parmar*, Jakob Uszkoreit*, Llion Jones*, Aidan N. Gomez*†, Łukasz Kaiser*, Illia Polosukhin*‡
+    </div>
+
+    <div class="affiliations">
+        Google Brain, Google Research, University of Toronto
+    </div>
+
+</section>
+
+<section class="slide">
+
+    <div class="slide-title">
+        Motivation & Background
+    </div>
+
+    <div class="slide-content text-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Recurrent and convolutional models dominate sequence transduction tasks</li>
+                <li>Attention mechanisms improve modeling of long-range dependencies</li>
+                <li>Sequential computation in RNNs limits parallelization and efficiency</li>
+                <li>Transformer replaces recurrence and convolutions with attention</li>
+                <li>Enables faster training and improved translation quality</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="slide">
+
+    <div class="slide-title">
+        Transformer Model Architecture
+    </div>
+
+    <div class="slide-content tall-figure-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Encoder-decoder structure with stacked self-attention and feed-forward layers</li>
+                <li>Dispenses with recurrence and convolutions entirely</li>
+                <li>Enables highly parallel computation</li>
+                <li>Residual connections and layer normalization in each sub-layer</li>
+            </ul>
+
+        </div>
+
+        <div class="visual-container">
+
+            <div class="figure-wrapper">
+
+                <img src="/home/appuser/src/figures/transformer/figure_1.png">
+
+                <div class="caption">
+                    Figure 1: The Transformer mode1 architecture.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="slide">
+
+    <div class="slide-title">
+        Attention Mechanisms in Transformer
+    </div>
+
+    <div class="slide-content column-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Scaled Dot-Product Attention: computes attention weights via scaled dot products</li>
+                <li>Multi-Head Attention: parallel attention layers capture diverse relationships</li>
+                <li>Allows model to attend to information from different subspaces</li>
+            </ul>
+
+        </div>
+
+        <div class="visual-container">
+
+            <div class="figure-wrapper">
+
+                <img src="/home/appuser/src/figures/transformer/figure_2.png">
+
+                <div class="caption">
+                    Figure 2: (1eft) Sca1ed Dot-Product Attention. (right) Mu1ti-Head Attention consists of severa1 attention 1ayers running in para11e1.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="slide">
+
+    <div class="slide-title">
+        Advantages of Self-Attention
+    </div>
+
+    <div class="slide-content row-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Shorter paths for long-range dependencies than RNNs or CNNs</li>
+                <li>Enables full parallelization during training</li>
+                <li>Computationally efficient for typical sequence lengths</li>
+                <li>Facilitates interpretability via attention visualization</li>
+            </ul>
+
+        </div>
+
+        <div class="visual-container">
+
+            <div class="figure-wrapper">
+
+                <img src="/home/appuser/src/tables/transformer/table_1.png">
+
+                <div class="caption">
+                    Tab1e 1: Maximum path 1engths, per-1ayer comp1exity and minimum number of sequentia1 operations for different 1ayer types. n is the sequence 1ength, d is the representation dimension, & is the kerne1 size of convo1utions and r the size of the neighborhood in restricted se1f-attention.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="slide">
+
+    <div class="slide-title">
+        Key Components of the Transformer
+    </div>
+
+    <div class="slide-content text-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Encoder: stack of 6 layers, each with multi-head self-attention and feed-forward network</li>
+                <li>Decoder: stack of 6 layers, includes encoder-decoder attention</li>
+                <li>Positional encodings added to input embeddings to capture order</li>
+                <li>Shared embedding and pre-softmax weights</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="slide">
+
+    <div class="slide-title">
+        Training Regime
+    </div>
+
+    <div class="slide-content text-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Trained on WMT 2014 English-German (4.5M pairs) and English-French (36M pairs)</li>
+                <li>Byte-pair encoding for vocabulary</li>
+                <li>Adam optimizer with custom learning rate schedule</li>
+                <li>Dropout and label smoothing for regularization</li>
+                <li>Base model: 12 hours, Big model: 3.5 days on 8 GPUs</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="slide">
+
+    <div class="slide-title">
+        Translation Results & Efficiency
+    </div>
+
+    <div class="slide-content row-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Transformer outperforms previous models on BLEU scores</li>
+                <li>Achieves higher quality at a fraction of training cost</li>
+                <li>Base and Big models both surpass prior single and ensemble models</li>
+            </ul>
+
+        </div>
+
+        <div class="visual-container">
+
+            <div class="figure-wrapper">
+
+                <img src="/home/appuser/src/tables/transformer/table_2.png">
+
+                <div class="caption">
+                    Tab1e 2: The Transformer achieves better BLEU scores than previous state-of-the-art mode1s on the Eng1ish-to-German and Eng1ish-to-French newstest2014 tests at a fraction of the training cost.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="slide">
+
+    <div class="slide-title">
+        Model Variations & Ablations
+    </div>
+
+    <div class="slide-content column-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Performance evaluated under various architectural changes</li>
+                <li>Increasing model size and dropout improves BLEU</li>
+                <li>Learned vs. sinusoidal positional encodings yield similar results</li>
+            </ul>
+
+        </div>
+
+        <div class="visual-container">
+
+            <div class="figure-wrapper">
+
+                <img src="/home/appuser/src/tables/transformer/table_3.png">
+
+                <div class="caption">
+                    Tab1e 3: Variations on the Transformer architecture. Un1isted va1ues are identica1 to those of the base mode1, A11 metrics are on the Eng1ish-to-German trans1ation deve1opment set, newstest2013. Listed perp1exities are per-wordpiece, according to our byte-pair encoding, and shou1d not be compared to per-word perp1exities.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="slide">
+
+    <div class="slide-title">
+        Generalization: Constituency Parsing
+    </div>
+
+    <div class="slide-content row-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Transformer achieves strong results on English constituency parsing</li>
+                <li>Outperforms prior models in both small and large data regimes</li>
+                <li>Minimal task-specific tuning required</li>
+            </ul>
+
+        </div>
+
+        <div class="visual-container">
+
+            <div class="figure-wrapper">
+
+                <img src="/home/appuser/src/tables/transformer/table_4.png">
+
+                <div class="caption">
+                    Tab1e 4: The Transformer genera1izes we11 to Eng1ish constituency parsing (Resu1ts are on Section 23 of WSJ)
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="slide">
+
+    <div class="slide-title">
+        Attention Visualization: Long-Range Dependencies
+    </div>
+
+    <div class="slide-content column-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Attention heads capture long-distance dependencies</li>
+                <li>Example: heads attend to distant verb-object relationships</li>
+                <li>Visualizations reveal interpretable model behavior</li>
+            </ul>
+
+        </div>
+
+        <div class="visual-container">
+
+            <div class="figure-wrapper">
+
+                <img src="/home/appuser/src/figures/transformer/figure_3.png">
+
+                <div class="caption">
+                    Figure 3: An examp1e of the attention mechanism fo11owing 1ong-distance dependencies in the encoder se1f-attention in 1ayer 5 of 6. Many of the attention heads attend to a distant dependency of the verb ‘making’, comp1eting the phrase ‘making...more difficu1t’. Attentions here shown on1y for the word ‘making’. Different co1ors represent different heads. Best viewed in co1or.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="slide">
+
+    <div class="slide-title">
+        Attention Visualization: Anaphora Resolution
+    </div>
+
+    <div class="slide-content tall-figure-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Specific heads focus on pronoun resolution (e.g., 'its')</li>
+                <li>Sharp attention distributions indicate precise reference tracking</li>
+                <li>Demonstrates specialization among attention heads</li>
+            </ul>
+
+        </div>
+
+        <div class="visual-container">
+
+            <div class="figure-wrapper">
+
+                <img src="/home/appuser/src/figures/transformer/figure_4.png">
+
+                <div class="caption">
+                    Figure 4: Two attention heads, a1so in 1ayer 5 of 6, apparent1y invo1ved in anaphora reso1ution. Top: Fu11 attentions for head 5. Bottom: 1so1ated attentions from just the word ‘its’ for attention heads 5 and 6. Note that the attentions are very sharp for this word.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="slide">
+
+    <div class="slide-title">
+        Attention Heads Specialization
+    </div>
+
+    <div class="slide-content tall-figure-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Different heads learn distinct syntactic and semantic tasks</li>
+                <li>Visualization shows heads capturing sentence structure</li>
+                <li>Supports model interpretability and analysis</li>
+            </ul>
+
+        </div>
+
+        <div class="visual-container">
+
+            <div class="figure-wrapper">
+
+                <img src="/home/appuser/src/figures/transformer/figure_5.png">
+
+                <div class="caption">
+                    Figure 5: Many of the attention heads exhibit behaviour that seems re1ated to the structure of the sentence. We give two such examp1es above, from two different heads from the encoder se1f-attention at 1ayer 5 of 6. The heads c1ear1y 1earned to perform different tasks.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="slide">
+
+    <div class="slide-title">
+        Conclusion & Future Work
+    </div>
+
+    <div class="slide-content text-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Transformer: first sequence model based solely on attention</li>
+                <li>Achieves state-of-the-art results in translation and parsing</li>
+                <li>Enables faster, more parallel training</li>
+                <li>Future: extend to other modalities and efficient local attention</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+</html>

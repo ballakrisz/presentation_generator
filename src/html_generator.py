@@ -16,6 +16,7 @@ client = OpenAI(
 def generate_html_presentation(
     document_text,
     indexed_images,
+    indexed_tables,
     output_html
 ):
     figures_description = []
@@ -40,6 +41,32 @@ def generate_html_presentation(
 
     figures_json = json.dumps(
         figures_description,
+        indent=2,
+        ensure_ascii=False
+    )
+
+
+    tables_description = []
+
+    for table in indexed_tables:
+
+        absolute_path = os.path.abspath(
+            table["image_path"]
+        )
+
+        tables_description.append({
+            "table_id": table["table_id"],
+            "image_path": absolute_path,
+            "caption": table.get(
+                "caption",
+                ""
+            ),
+            "width": table.get("width"),
+            "height": table.get("height")
+        })
+
+    tables_json = json.dumps(
+        tables_description,
         indent=2,
         ensure_ascii=False
     )
@@ -215,24 +242,58 @@ A FIGURE'S CAPTION SHOULD BE THE SAME AS IN THE SOURCE DOCUMENT IF POSSIBLE.
 TABLE RULES
 ==================================================
 
+IMPORTANT:
+Use the PROVIDED TABLE IMAGES.
+
+DO NOT recreate tables manually in HTML
+unless the table is extremely tiny/simple.
+
+The extracted table images preserve:
+- formatting
+- alignment
+- colors
+- bolding
+- spacing
+- readability
+
+Therefore:
+- prefer table images over HTML tables
+- use img tags for tables
+- include the original table caption
+- preserve readability
+
 Tables MUST be semantically relevant.
 
 DO NOT reuse tables multiple times.
 
-ALL TABLES ON A SLIDE SHOULD BE ACCOMPANIED BY
-2-3 BULLET POINTS EXPLAINING THE MAJOR FINDING.
+ALL TABLES SHOULD:
+- include 2-3 explanatory bullet points
+- explain the key finding
+- summarize the important metrics
 
-COMPACT TABLE LAYOUT RULES:
+IMPORTANT:
+Treat tables as visual elements similarly to figures.
 
-If a table is narrow or contains only a few rows/columns:
-- MUST use table-layout
-- place bullet points on the left
-- place the table on the right
+==================================================
+TABLE IMAGE LAYOUT RULES
+==================================================
 
-Large tables SHOULD use:
-- text above
+Small/narrow tables:
+- use side-by-side layouts
+- bullets left
+- table image right
+
+Wide tables:
+- use stacked layouts
+- bullets above
 - table below
-- stacked layouts
+
+Large dense tables:
+- MAY occupy most of the slide
+- reduce bullet count if necessary
+- prioritize table readability
+
+DO NOT shrink tables until unreadable.
 
 ==================================================
 REFERENCES RULES
@@ -333,6 +394,34 @@ use row layout.
 Readability is ALWAYS more important
 than maximizing image size.
 
+==================================================
+PORTRAIT / TALL FIGURE RULES
+==================================================
+
+IMPORTANT:
+Figures with portrait or near-square aspect ratios
+MUST usually use ROW LAYOUT.
+
+** !! THIS IS REALLY IMPORTANT !! **
+A figure is considered portrait-oriented when:
+- height/width >= 3/5
+** !! THIS IS REALLY IMPORTANT !! **
+
+Portrait figures become unreadable in stacked layouts
+because vertical space becomes too limited.
+
+Therefore:
+- portrait figures SHOULD be displayed large
+- portrait figures SHOULD occupy the right side
+- explanatory bullets SHOULD occupy the left side
+
+DO NOT use stacked layout for portrait figures
+unless the figure is visually extremely simple.
+
+
+
+
+
 TEXT-ONLY SLIDES MUST:
 - use text-layout
 - use the FULL slide width
@@ -354,12 +443,7 @@ ALLOWED HTML ELEMENTS ONLY:
 - ul
 - li
 - img
-- table
-- thead
-- tbody
-- tr
-- th
-- td
+
 
 DO NOT USE:
 - p
@@ -494,12 +578,8 @@ TEXT-ONLY SLIDE
 </section>
 
 ==================================================
-COMPACT TABLE LAYOUT
+TABLE IMAGE STRUCTURE
 ==================================================
-
-Use this layout for:
-- small tables
-- narrow tables
 
 <section class="slide">
 
@@ -507,37 +587,25 @@ Use this layout for:
         SLIDE TITLE
     </div>
 
-    <div class="slide-content table-layout">
+    <div class="slide-content row-layout">
 
         <div class="content-column">
 
             <ul>
                 <li>Important finding</li>
-                <li>Another observation</li>
             </ul>
 
         </div>
 
         <div class="visual-container">
 
-            <div class="table-container">
+            <div class="figure-wrapper">
 
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Metric</th>
-                            <th>Value</th>
-                        </tr>
-                    </thead>
+                <img src="TABLE_IMAGE_PATH">
 
-                    <tbody>
-                        <tr>
-                            <td>F1</td>
-                            <td>0.82</td>
-                        </tr>
-                    </tbody>
-
-                </table>
+                <div class="caption">
+                    Table caption
+                </div>
 
             </div>
 
@@ -548,34 +616,55 @@ Use this layout for:
 </section>
 
 ==================================================
-TABLE STRUCTURE
-==================================================
-
-<div class="table-container">
-
-    <table>
-        <thead>
-            <tr>
-                <th>Header</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            <tr>
-                <td>Value</td>
-            </tr>
-        </tbody>
-    </table>
-
-</div>
-
-==================================================
 REFERENCE STRUCTURE
 ==================================================
 
 <ul class="references">
     <li>Reference item</li>
 </ul>
+
+==================================================
+TALL FIGURE LAYOUT
+==================================================
+
+For portrait-oriented figures:
+- use class="tall-figure-layout"
+
+Structure:
+
+<section class="slide">
+
+    <div class="slide-title">
+        TITLE
+    </div>
+
+    <div class="slide-content tall-figure-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Bullet</li>
+            </ul>
+
+        </div>
+
+        <div class="visual-container">
+
+            <div class="figure-wrapper">
+
+                <img src="IMAGE_PATH">
+
+                <div class="caption">
+                    Figure caption
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
 ==================================================
 IMPORTANT FIGURE RULES
@@ -606,7 +695,25 @@ Generate semantic HTML ONLY.
 FIGURES
 ==================================================
 
+IMPORTANT:
+Each figure includes:
+- width
+- height
+- caption
+
+You MUST use width/height to reason about:
+- portrait vs landscape orientation
+- readability
+- layout selection
+
 {figures_json}
+
+
+==================================================
+TABLES
+==================================================
+
+{tables_json}
 
 ==================================================
 DOCUMENT
@@ -776,7 +883,7 @@ DOCUMENT
     .slide-content.text-layout li {
         margin-bottom: 0;
 
-        font-size: 32px;
+        font-size:28px;
 
         line-height: 1.4;
     }
@@ -790,7 +897,7 @@ DOCUMENT
     }
 
     .slide-content.column-layout li {
-        font-size: 26px;
+        font-size: 28px;
         line-height: 1.35;
     }
 
@@ -816,7 +923,7 @@ DOCUMENT
     }
 
     .slide-content.table-layout li {
-        font-size: 30px;
+        font-size: 28px;
         line-height: 1.4;
     }
 
@@ -830,6 +937,56 @@ DOCUMENT
         flex: 1;
 
         align-items: center;
+    }
+
+    .slide-content.tall-figure-layout {
+        flex-direction: row;
+
+        align-items: stretch;
+    }
+
+    .slide-content.tall-figure-layout .content-column {
+        flex: 0 0 38%;
+
+        justify-content: center;
+    }
+
+    .slide-content.tall-figure-layout .visual-container {
+        flex: 1;
+
+        align-items: center;
+        justify-content: center;
+
+        overflow: hidden;
+    }
+
+    .slide-content.tall-figure-layout .figure-wrapper {
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+        justify-content: center;
+    }
+
+    .slide-content.tall-figure-layout img {
+        height: 92%;
+
+        width: auto;
+
+        max-width: 100%;
+
+        object-fit: contain;
+    }
+
+    .slide-content.tall-figure-layout li {
+        font-size: 28px;
+
+        line-height: 1.45;
+
+        margin-bottom: 22px;
     }
 
     .content-column {
@@ -846,15 +1003,14 @@ DOCUMENT
     .visual-container {
         flex: 1;
 
-        min-height: 0;
         min-width: 0;
+        min-height: 0;
 
         display: flex;
-
         align-items: center;
         justify-content: center;
 
-        overflow: hidden;
+        overflow: visible;
     }
 
     img {
@@ -864,9 +1020,6 @@ DOCUMENT
         object-fit: contain;
 
         border-radius: 14px;
-
-        box-shadow:
-            0 10px 30px rgba(0,0,0,0.35);
     }
 
     ul {
@@ -890,29 +1043,32 @@ DOCUMENT
         align-items: center;
         justify-content: center;
 
-        overflow: hidden;
-    }
-
-    .figure-wrapper img {
-        flex: 1;
-
         min-height: 0;
     }
 
-    .caption {
+    .figure-wrapper img {
+
         width: 100%;
+        height: auto;
 
-        margin-top: 14px;
+        max-width: 100%;
+        max-height: 75%;
 
-        font-size: 15px;
+        object-fit: contain;
+
+        border-radius: 14px;
+    }
+
+    .caption {
+        flex-shrink: 0;
+
+        margin-top: 12px;
+
+        font-size: 18px;
 
         line-height: 1.35;
 
-        color: #cbd5e1;
-
         text-align: center;
-
-        opacity: 0.92;
     }
 
     .title-slide {

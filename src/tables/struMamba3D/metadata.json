@@ -1,0 +1,93 @@
+[
+  {
+    "table_id": 1,
+    "image_path": "tables/struMamba3D/table_1.png",
+    "caption": "Tab1e 1. Shape C1assification on ScanObjectNN and Mode1Net40 Datasets. For ScanObjectNN, we report the c1assification accuracy(%) over the three subsets: OBJ-BG, OBJ-ONLY, and PB-T50-RS. And { indicates using simp1e rotationa1 augmentation [7] for fine-tuning.",
+    "width": 2158,
+    "height": 1263
+  },
+  {
+    "table_id": 2,
+    "image_path": "tables/struMamba3D/table_2.png",
+    "caption": "Tab1e 2. Part Segmentation on ShapeNetPart. We report the mean 1oU for a11 c1asses (m1oU,) and a11 instances (m1oU;).",
+    "width": 1054,
+    "height": 790
+  },
+  {
+    "table_id": 2,
+    "image_path": "tables/struMamba3D/table_2.png",
+    "caption": "Tab1e 2. Part Segmentation on ShapeNetPart. We report the mean 1oU for a11 c1asses (m1oU,) and a11 instances (m1oU;).",
+    "width": 1080,
+    "height": 508
+  },
+  {
+    "table_id": 5,
+    "image_path": "tables/struMamba3D/table_5.png",
+    "caption": "Tab1e 5. Ab1ation on Structura1 SSM B1ock. The base1ine uses the standard Mamba b1ock to rep1ace the Structura1 SSM B1ock.",
+    "width": 1074,
+    "height": 373
+  },
+  {
+    "table_id": 4,
+    "image_path": "tables/struMamba3D/table_4.png",
+    "caption": "Tab1e 4. Effect of the designed modu1es. ‘SLAS’ indicates the sequence 1ength-adaptive strategy used in pre-training phase.",
+    "width": 1068,
+    "height": 282
+  },
+  {
+    "table_id": 6,
+    "image_path": "tables/struMamba3D/table_6.png",
+    "caption": "Tab1e 6. Ab1ation on Structura1 SSM. ‘SS’ represents the use of spatia1 states in the SSM. ‘(a)’ denotes the SSM parameters depending on the point feature, whi1e ‘MLP(AP)’ represents the SSM parameters depending on the spatia1 re1ationship.",
+    "width": 1015,
+    "height": 326
+  },
+  {
+    "table_id": 7,
+    "image_path": "tables/struMamba3D/table_7.png",
+    "caption": "Tab1e 7. Ab1ation on sequence 1ength-adaptive strategy. ‘ASUM’ indicates the adaptive state update mechanism, and ‘\\’ indicates the weight of the spatia1 state consistency 1oss Lesc.",
+    "width": 989,
+    "height": 417
+  },
+  {
+    "table_id": 8,
+    "image_path": "tables/struMamba3D/table_8.png",
+    "caption": "Tab1e 8. Detai1ed Resu1ts of Part Segmentation on ShapeNetPart Dataset. We report the mean 1oU for each category. * indicates resu1ts reproduced using the officia1 code.",
+    "width": 1884,
+    "height": 758
+  },
+  {
+    "table_id": 9,
+    "image_path": "tables/struMamba3D/table_9.png",
+    "caption": "Tab1e 9. Quantitative comparison on the ScanNetV2 dataset in terms of mAP25 and mAP50.",
+    "width": 697,
+    "height": 266
+  },
+  {
+    "table_id": 9,
+    "image_path": "tables/struMamba3D/table_9.png",
+    "caption": "Tab1e 9. Quantitative comparison on the ScanNetV2 dataset in terms of mAP25 and mAP50.",
+    "width": 1084,
+    "height": 415
+  },
+  {
+    "table_id": 12,
+    "image_path": "tables/struMamba3D/table_12.png",
+    "caption": "Tab1e 12. Ab1ation on the point convo1ution. “k” denotes the number of k-nearest neighbors in the 1ightweight convo1ution,",
+    "width": 714,
+    "height": 371
+  },
+  {
+    "table_id": 12,
+    "image_path": "tables/struMamba3D/table_12.png",
+    "caption": "Tab1e 12. Ab1ation on the point convo1ution. “k” denotes the number of k-nearest neighbors in the 1ightweight convo1ution,",
+    "width": 977,
+    "height": 417
+  },
+  {
+    "table_id": 12,
+    "image_path": "tables/struMamba3D/table_12.png",
+    "caption": "Tab1e 12. Ab1ation on the point convo1ution. “k” denotes the number of k-nearest neighbors in the 1ightweight convo1ution,",
+    "width": 1082,
+    "height": 264
+  }
+]

@@ -1,0 +1,807 @@
+<html>
+<head>
+    <style>
+
+    @page {
+        size: 1280px 720px;
+        margin: 0;
+    }
+
+    html, body {
+        margin: 0;
+        padding: 0;
+        background: #111827;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .slide {
+        width: 1280px;
+        height: 720px;
+
+        box-sizing: border-box;
+
+        padding: 42px;
+
+        page-break-after: always;
+        break-after: page;
+
+        background: linear-gradient(
+            135deg,
+            #111827,
+            #1f2937
+        );
+
+        color: white;
+
+        overflow: hidden;
+
+        display: flex;
+        flex-direction: column;
+
+        position: relative;
+    }
+
+    .slide-title {
+        font-size: 38px;
+        font-weight: 700;
+
+        margin-bottom: 24px;
+
+        color: white;
+
+        flex-shrink: 0;
+    }
+
+    .slide-content {
+        flex: 1;
+
+        display: flex;
+
+        gap: 36px;
+
+        overflow: hidden;
+
+        min-height: 0;
+
+        align-items: stretch;
+    }
+
+    .slide-content.row-layout {
+        flex-direction: row;
+    }
+
+    .slide-content.column-layout {
+        flex-direction: column;
+    }
+
+    .slide-content.text-layout {
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: center;
+
+        align-items: stretch;
+
+        height: 100%;
+    }
+
+    .slide-content.text-layout .content-column {
+        flex: 1;
+
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: center;
+    }
+
+    .slide-content.text-layout ul {
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: center;
+
+        gap: 22px;
+
+        width: 100%;
+    }
+
+    .slide-content.text-layout li {
+        margin-bottom: 0;
+
+        font-size:28px;
+
+        line-height: 1.4;
+    }
+
+    .slide-content.column-layout .visual-container {
+        flex: 0 0 58%;
+    }
+
+    .slide-content.column-layout .content-column {
+        flex: 1;
+    }
+
+    .slide-content.column-layout li {
+        font-size: 28px;
+        line-height: 1.35;
+    }
+
+    .slide-content.row-layout .content-column {
+        max-width: 34%;
+
+        justify-content: center;
+    }
+
+    .slide-content.row-layout li {
+        font-size: 28px;
+        line-height: 1.4;
+    }
+
+    .slide-content.row-layout .visual-container {
+        flex: 1;
+    }
+
+    .slide-content.table-layout {
+        flex-direction: row;
+
+        align-items: center;
+    }
+
+    .slide-content.table-layout li {
+        font-size: 28px;
+        line-height: 1.4;
+    }
+
+    .slide-content.table-layout .content-column {
+        flex: 0 0 52%;
+
+        justify-content: center;
+    }
+
+    .slide-content.table-layout .visual-container {
+        flex: 1;
+
+        align-items: center;
+    }
+
+    .slide-content.tall-figure-layout {
+        flex-direction: row;
+
+        align-items: stretch;
+    }
+
+    .slide-content.tall-figure-layout .content-column {
+        flex: 0 0 38%;
+
+        justify-content: center;
+    }
+
+    .slide-content.tall-figure-layout .visual-container {
+        flex: 1;
+
+        align-items: center;
+        justify-content: center;
+
+        overflow: hidden;
+    }
+
+    .slide-content.tall-figure-layout .figure-wrapper {
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+        justify-content: center;
+    }
+
+    .slide-content.tall-figure-layout img {
+        height: 92%;
+
+        width: auto;
+
+        max-width: 100%;
+
+        object-fit: contain;
+    }
+
+    .slide-content.tall-figure-layout li {
+        font-size: 28px;
+
+        line-height: 1.45;
+
+        margin-bottom: 22px;
+    }
+
+    .content-column {
+        flex: 1;
+
+        min-width: 0;
+
+        display: flex;
+        flex-direction: column;
+
+        justify-content: flex-start;
+    }
+
+    .visual-container {
+        flex: 1;
+
+        min-width: 0;
+        min-height: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        overflow: visible;
+    }
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+
+        object-fit: contain;
+
+        border-radius: 14px;
+    }
+
+    ul {
+        margin: 0;
+        padding-left: 28px;
+    }
+
+    li {
+        line-height: 1.4;
+
+        margin-bottom: 14px;
+    }
+
+    .figure-wrapper {
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+        justify-content: center;
+
+        min-height: 0;
+    }
+
+    .figure-wrapper img {
+
+        width: 100%;
+        height: auto;
+
+        max-width: 100%;
+        max-height: 75%;
+
+        object-fit: contain;
+
+        border-radius: 14px;
+    }
+
+    .caption {
+        flex-shrink: 0;
+
+        margin-top: 12px;
+
+        font-size: 18px;
+
+        line-height: 1.35;
+
+        text-align: center;
+    }
+
+    .title-slide {
+        width: 1280px;
+        height: 720px;
+
+        box-sizing: border-box;
+
+        display: flex;
+        flex-direction: column;
+
+        justify-content: center;
+        align-items: center;
+
+        text-align: center;
+
+        padding: 80px 120px;
+
+        overflow: hidden;
+    }
+
+    .title-slide .slide-title {
+        display: block;
+
+        width: 100%;
+
+        font-family: Arial, sans-serif;
+
+        font-size: 50px;
+
+        line-height: 1.08;
+
+        font-weight: 900;
+
+        color: white;
+
+        text-align: center;
+
+        letter-spacing: -2px;
+
+        margin-bottom: 54px;
+    }
+
+    .title-slide .authors {
+        width: 100%;
+
+        font-size: 38px;
+
+        line-height: 1.35;
+
+        font-weight: 500;
+
+        color: #d1d5db;
+
+        text-align: center;
+
+        margin-bottom: 30px;
+    }
+
+    .title-slide .affiliations {
+        width: 100%;
+
+        font-size: 26px;
+
+        line-height: 1.45;
+
+        font-weight: 400;
+
+        color: #9ca3af;
+
+        text-align: center;
+
+        opacity: 0.95;
+    }
+
+    table {
+        width: 100%;
+
+        border-collapse: collapse;
+
+        overflow: hidden;
+
+        border-radius: 12px;
+
+        background: white;
+
+        color: black;
+
+        font-size: 18px;
+
+        margin-bottom: 12px;
+    }
+
+    th {
+        background: #2563eb;
+
+        color: white;
+
+        padding: 12px;
+
+        text-align: left;
+    }
+
+    td {
+        padding: 10px;
+
+        border: 1px solid #d1d5db;
+    }
+
+    .table-container {
+        width: 100%;
+
+        overflow: hidden;
+
+        margin-top: 18px;
+    }
+
+    .references {
+        font-size: 16px;
+
+        line-height: 1.4;
+
+        overflow: hidden;
+    }
+
+    .references li {
+        font-size: 16px;
+
+        margin-bottom: 8px;
+    }
+
+    </style>
+    
+    <title>Detection and Classification of Small-sized UAVs and Birds in Sparse LiDAR Point Cloud</title>
+</head>
+<body>
+
+<section class="slide title-slide">
+
+    <div class="slide-title">
+        Detection and Classification of Small-sized UAVs and Birds in Sparse LiDAR Point Cloud
+    </div>
+
+    <div class="authors">
+        Krisztián Balla, Anita Keszler, Sándor Gazdag, András L. Majdik
+    </div>
+
+    <div class="affiliations">
+        HUN-REN Institute for Computer Science and Control, Budapest, Hungary
+    </div>
+
+</section>
+
+<section class="slide">
+
+    <div class="slide-title">
+        Motivation and Problem Statement
+    </div>
+
+    <div class="slide-content text-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Consumer drones pose safety and privacy risks for critical infrastructure</li>
+                <li>Existing RADAR and camera-based methods have limitations for 3D detection</li>
+                <li>Rosette scanning LiDAR provides sparse point clouds, making detection challenging</li>
+                <li>Key challenge: Distinguishing UAVs from birds and filtering false positives</li>
+                <li>Goal: Real-time detection and classification using only LiDAR data</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="slide">
+
+    <div class="slide-title">
+        Related Work
+    </div>
+
+    <div class="slide-content text-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Prior work uses octomap-based static background subtraction</li>
+                <li>Camera and RADAR methods lack 3D spatial accuracy or require expensive hardware</li>
+                <li>Existing methods struggle to distinguish UAVs from birds in dynamic scenes</li>
+                <li>Our approach: LiDAR-only detection and classification up to 100 m</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="slide">
+
+    <div class="slide-title">
+        Proposed Solution Pipeline
+    </div>
+
+    <div class="slide-content column-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Raw point cloud input from rosette scanning LiDAR</li>
+                <li>Semantic segmentation removes static and dynamic background</li>
+                <li>Foreground points clustered and preprocessed</li>
+                <li>Modified PointNet classifies objects as drone or bird</li>
+            </ul>
+
+        </div>
+
+        <div class="visual-container">
+
+            <div class="figure-wrapper">
+
+                <img src="/home/appuser/src/figures/ssrr_2024/figure_1.png">
+
+                <div class="caption">
+                    Fig. 1. Out1ine of the proposed so1ution: The raw point c1oud stream, that is provided by a rosette scanning LiDAR serves as input for an attention-based neura1 network that removes both the static and dynamic background e1ements from it. The remaining foreground points then undergo a c1ustering and a unique preprocessing step in order to be c1assified by a s1ight1y modified PointNet network.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="slide">
+
+    <div class="slide-title">
+        Semantic Segmentation Network
+    </div>
+
+    <div class="slide-content column-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Spatial transformer (T-Net) aligns point clouds to a uniform space</li>
+                <li>Multi-head attention captures global context between points</li>
+                <li>Directly uses points as tokens, skipping voxelization</li>
+                <li>MLP assigns background or foreground class to each point</li>
+            </ul>
+
+        </div>
+
+        <div class="visual-container">
+
+            <div class="figure-wrapper">
+
+                <img src="/home/appuser/src/figures/ssrr_2024/figure_2.png">
+
+                <div class="caption">
+                    Fig. 2. Overview of the semantic segmentation network: the point c1oud is transformed into a transformation invariant space, where each of the points inf1uence is ca1cu1ated with re1evance to a11 the other points through the Mu1ti-Head attention [17] mechanism and fina11y, a11 of them are assigned with a c1ass determined by an MLP.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="slide">
+
+    <div class="slide-title">
+        Preprocessing and Classification
+    </div>
+
+    <div class="slide-content text-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Background points removed; foreground points clustered</li>
+                <li>Clusters with fewer than 3 points discarded as noise</li>
+                <li>Nearest Neighbour Search recovers missed foreground points</li>
+                <li>Voxel grid ensures uniform input for classification</li>
+                <li>Modified PointNet classifies clusters as drone, bird, or unknown</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="slide">
+
+    <div class="slide-title">
+        Component-wise Inference Speed
+    </div>
+
+    <div class="slide-content row-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>All pipeline components achieve real-time speeds</li>
+                <li>Mean processing time per frame: segmentation 4.29 ms, clustering 1.65 ms, preprocessing 4.11 ms, classification 6.44 ms</li>
+                <li>System operates at &gt;10 FPS, suitable for real-time applications</li>
+            </ul>
+
+        </div>
+
+        <div class="visual-container">
+
+            <div class="figure-wrapper">
+
+                <img src="/home/appuser/src/tables/ssrr_2024/table_1.png">
+
+                <div class="caption">
+                    Table 1 COMPONENT-W1SE PERFORMANCE REGARD1NG 1NFERENCE SPEED
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="slide">
+
+    <div class="slide-title">
+        Background Removal Speed Comparison
+    </div>
+
+    <div class="slide-content row-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Dynamic background removal (ours) is significantly faster than static octomap-based method</li>
+                <li>Mean runtime: 4.29 ms (dynamic) vs 16.49 ms (static)</li>
+                <li>Lower deviation and improved handling of dynamic environments</li>
+            </ul>
+
+        </div>
+
+        <div class="visual-container">
+
+            <div class="figure-wrapper">
+
+                <img src="/home/appuser/src/tables/ssrr_2024/table_2.png">
+
+                <div class="caption">
+                    Table 2 STAT1C AND DYNAM1C BACKGROUND REMOVAL SPEED COMPAR1SON
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="slide">
+
+    <div class="slide-title">
+        Semantic Segmentation Performance
+    </div>
+
+    <div class="slide-content row-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Balanced F-Measure (F1): 0.78 on test dataset</li>
+                <li>Low false positives; most objects are detected</li>
+                <li>False negatives mainly appear as small noisy clusters</li>
+            </ul>
+
+        </div>
+
+        <div class="visual-container">
+
+            <div class="figure-wrapper">
+
+                <img src="/home/appuser/src/tables/ssrr_2024/table_3.png">
+
+                <div class="caption">
+                    Table 3 PERFORMANCE EVALUAT1ON OF THE SEMANT1C SEGMENTAT1ON NETWORK
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="slide">
+
+    <div class="slide-title">
+        Classification Network Results
+    </div>
+
+    <div class="slide-content row-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Classification evaluated as part of full pipeline</li>
+                <li>Test dataset balanced between drones and birds</li>
+                <li>Overall accuracy: 81.5%</li>
+            </ul>
+
+        </div>
+
+        <div class="visual-container">
+
+            <div class="figure-wrapper">
+
+                <img src="/home/appuser/src/figures/ssrr_2024/figure_3.png">
+
+                <div class="caption">
+                    Fig. 3. Confusion matrix on the test dataset for the c1assification network.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="slide">
+
+    <div class="slide-title">
+        Classification Accuracy vs. Distance
+    </div>
+
+    <div class="slide-content column-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Classification accuracy remains stable across distances</li>
+                <li>Distance only slightly affects correct vs incorrect classification ratio</li>
+                <li>Classifier generalizes well to longer distances due to sparse training samples</li>
+            </ul>
+
+        </div>
+
+        <div class="visual-container">
+
+            <div class="figure-wrapper">
+
+                <img src="/home/appuser/src/figures/ssrr_2024/figure_4.png">
+
+                <div class="caption">
+                    Fig. 4. The number of correct and incorrect c1assifications on the test dataset p1otted against the object’s distance from the sensor. As i11ustrated above, the distance on1y s1ight1y affects the ratio of correct to incorrect c1assifications. This behaviour is the resu1t of our co11ected samp1es being sparse to begin with, which great1y aided our c1assifier in genera1izing for 1onger distances during training.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="slide">
+
+    <div class="slide-title">
+        Conclusions and Future Work
+    </div>
+
+    <div class="slide-content text-layout">
+
+        <div class="content-column">
+
+            <ul>
+                <li>Proposed pipeline enables real-time UAV and bird detection using sparse LiDAR</li>
+                <li>Attention-based segmentation and modified PointNet achieve robust performance</li>
+                <li>Future work: Probabilistic analysis of detection limits and failure cases</li>
+                <li>Further evaluation on optimal reflection thresholds and reliability at distance</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+</html>
