@@ -62,6 +62,7 @@ docker exec -it ${container_name} bash
 The project includes a convenience wrapper script:
 
 ```bash
+cd src/
 ./ppt_generator.sh
 ```
 
@@ -75,6 +76,7 @@ The script:
 ### Basic Usage
 
 ```bash
+cd src/
 ./ppt_generator.sh --input input/sample.pdf
 ```
 
@@ -87,6 +89,7 @@ This generates:
 ### Custom Output Paths
 
 ```bash
+cd src/
 ./ppt_generator.sh \
     --input input/paper.pdf \
     --html-output output/custom.html \
@@ -98,6 +101,7 @@ This generates:
 ### Full Example
 
 ```bash
+cd src/
 ./run.sh \
     --input input/paper.pdf \
     --html-output output/presentation.html \
